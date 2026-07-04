@@ -1,0 +1,18 @@
+# Datasets
+data/
+**/data/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# trained weights
+*.pth
+*.pt
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# virtual environment
+.venv/
+venv/
