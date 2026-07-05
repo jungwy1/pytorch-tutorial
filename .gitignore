@@ -16,5 +16,3 @@ __pycache__/
 # virtual environment
 .venv/
 venv/
-
-**/train_colab.ipynb
