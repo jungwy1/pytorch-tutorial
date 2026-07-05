@@ -8,9 +8,9 @@ from engine import train_loop, test_loop
 # ----- Hyperparameters -----
 weight_decay = 5e-4
 batch_size = 128
-learning_rate = 3e-4
-epochs = 20
-step_size = 15
+learning_rate = 4e-4
+epochs = 30
+#step_size = 15
 gamma = 0.1
 
 def main():
@@ -43,7 +43,7 @@ def main():
     model = AlexNet().to(device)
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma)
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15,25], gamma=gamma)
 
     # ---- Train ----
     for t in range(epochs):
