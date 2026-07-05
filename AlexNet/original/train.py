@@ -8,9 +8,9 @@ from engine import train_loop, test_loop
 # ----- Hyperparameters -----
 weight_decay = 5e-4
 batch_size = 128
-learning_rate = 1e-4
+learning_rate = 3e-4
 epochs = 20
-step_size = 10
+step_size = 15
 gamma = 0.1
 
 def main():
