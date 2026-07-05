@@ -71,20 +71,13 @@ def get_dataloaders(batch_size = 64, path2data = "../data"):
 
 # validation code for the above code
 if __name__ == "__main__":
-    train_ds = torchvision.datasets.Imagenette(root="../data", split="train",
-                                            size="320px", download=True,
-                                            transform=train_transform)
-    img, label = train_ds[0]
-    print(img.shape)                # expected size: torch.Size([3, 227, 227])
-    mean, std = torch.zeros((1,)), torch.zeros((1,))
-    for i in range(10):
-        img, label = train_ds[i]
-        mean += img.mean()
-        std += img.std()
-    mean /= 10
-    std /= 10
-    print(img.mean(), img.std())   # expected output: 0, 1
-
     train_dl, test_dl = get_dataloaders()
     X, y = next(iter(train_dl))
     print(X.shape, y.shape)   # expected: torch.Size([64, 3, 227, 227]) torch.Size([64])
+    mean, std = torch.zeros((1,)), torch.zeros((1,))
+    for i in range(10):
+        mean += X[i].mean()
+        std += X[i].std()
+    mean /= 10
+    std /= 10
+    print(mean, std)   # expected output: 0, 1
