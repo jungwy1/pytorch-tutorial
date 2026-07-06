@@ -43,7 +43,7 @@ def main():
 
     # ----- Pruning -----
     sparsities, accuracies = [0], [base_acc]
-    for amount in [0.5, 0.7, 0.9, 0.95]:
+    for amount in [i / 100 for i in range(50, 100, 5)]:
         model = AlexNet().to(device)
         model.load_state_dict(torch.load(weight_path, map_location=device))
         params = [(m, "weight") for m in model.model
