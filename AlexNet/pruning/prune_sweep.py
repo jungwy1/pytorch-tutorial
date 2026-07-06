@@ -20,13 +20,14 @@ def main():
         IN_COLAB = False
     
     path2data = "../data"
-    save_path = "pruning_curve_no_finetune.png"
     if IN_COLAB:
         print("start pruning in COLAB")
         weight_path = "/content/drive/MyDrive/alexnet_weights.pth"
+        save_path = "/content/drive/MyDrive/pruning_curve_no_finetune.png"
     else:
         print("start pruning in LOCAL")
         weight_path = "../original/alexnet_weights.pth"
+        save_path = "pruning_curve_no_finetune.png"
 
     # ---- Reproducibility (same init every run / same init on Colab) ----
     torch.manual_seed(42)
