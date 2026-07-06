@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.utils.prune as prune
 import matplotlib.pyplot as plt
+from adjustText import adjust_text
 
 from model import AlexNet
 from dataset import get_dataloaders
@@ -59,20 +60,19 @@ def main():
         accuracies.append(acc)
     
     # ----- Plot the results -----
-    plt.figure(figsize=(7, 5))
+    plt.figure(figsize=(11, 5))
     plt.plot(sparsities, accuracies, marker='o', linewidth=2,
              color="#2563eb", label="no fine-tune")
     plt.axhline(10, color="gray", linestyle="--", linewidth=1,
-                label="random (10%)")
-    for x, y in zip(sparsities, accuracies):
-        plt.annotate(f"{y:.1f}%", (x,y), textcoords="offset points",
-                     xytext=(0,8), ha="center", fontsize=9)
+                label="random (10%)") 
     plt.xlabel("Sparsity (%)")
     plt.ylabel("Accuracy (%)")
     plt.title("AlexNet magnitude pruning (no fine-tune)")
     plt.ylim(0, 85)
     plt.grid(True, alpha=0.3)
     plt.legend()
+    texts = [plt.text(x, y, f"{y:.1f}%", fontsize=8) for x, y in zip(sparsities, accuracies)]
+    adjust_text(texts)   # 겹치는 라벨을 자동으로 밀어냄
     plt.tight_layout()
     plt.savefig(save_path, dpi=150)   # ← PNG로 저장
     plt.show()
