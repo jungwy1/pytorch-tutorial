@@ -12,7 +12,7 @@ from engine import train_loop, test_loop
 weight_decay = 5e-4
 batch_size = 128
 learning_rate = 4e-5
-finetune_epochs = 5
+finetune_epochs = 8
 gamma = 0.1
 
 def main():
