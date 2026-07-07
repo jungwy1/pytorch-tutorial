@@ -44,7 +44,6 @@ if __name__ == "__main__":
     decomposed = qA @ qB - ZA * qB.sum(dim=0)
     error += check("decomposition identity", (direct == decomposed).all().item())
 
-    error = 0
     # (2) integer-only matmul reproduces the float result within quantization error
     C_hat = quantized_matmul(A, B, n_bits=8)
     rel_err = (C_hat - C_ref).abs().max().item() / C_ref.abs().max().item()
