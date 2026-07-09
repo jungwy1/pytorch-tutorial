@@ -99,7 +99,7 @@ def main():
 
     # ================================ EVALUATE ================================
     # compare float top-1 vs int8-classifier top-1 on the val set
-    n_eval_batches = 10                            # set an int to subsample (CPU int matmul is slow)
+    n_eval_batches = None                            # set an int to subsample (CPU int matmul is slow)
     correct_f = correct_q = total = 0
     with torch.no_grad():
         for i, (X, y) in enumerate(test_loader):
